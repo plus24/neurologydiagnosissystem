@@ -1,0 +1,17 @@
+#formtable {
+	position: relative;
+	align: center;
+	font-family: verdana;
+	font-size: 13px;
+	color: #663300;
+}
+
+#radiogroup {
+	font-family: verdana;
+	font-size: 13px;
+	color: #663300;
+}
+
+.error {
+	color: red;
+}

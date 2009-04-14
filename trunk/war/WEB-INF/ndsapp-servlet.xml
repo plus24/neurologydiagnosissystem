@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="hes" class="ndsapp.service.HybridExpertSystem">
+		<property name="rc" ref="retrieveSimilarCases"></property>
+		<property name="re" ref="ruleEngine"></property>
+		<property name="cd" ref="cd"></property>
+	</bean>
+
+	<bean id="retrieveSimilarCases"
+		class="ndsapp.service.NearestNeighborRetrieveSimilarCases">
+		<property name="cd" ref="cd"></property>
+	</bean>
+	
+	<bean id="databaseconnection" class="ndsapp.repository.MySQLConnection">
+		<property name="driver" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/ndsdb" />
+		<property name="user" value="root" />
+		<property name="pw" value="qwerty" />
+	</bean>
+	
+	<bean id="ruleEngine"
+		class="ndsapp.service.SimpleInferenceEngine">
+			<property name="rd" ref="rd"></property>
+	</bean>
+
+	<bean id="cd" class="ndsapp.repository.CaseDao">
+		<property name="dbconn" ref="databaseconnection"></property>
+	</bean>
+	
+	<bean id="rd" class="ndsapp.repository.RuleDao">
+		<property name="dbconn" ref="databaseconnection"></property>
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+	</bean>
+
+	<!--the application context definition for the ndsapp Dispatcher Servlet -->
+
+	<bean name="/aboutus.htm" class="ndsapp.web.AboutUsController" />
+
+	<bean name="/help.htm" class="ndsapp.web.DisplayHelpController" />
+
+	<bean name="/updateinstructionform.htm"
+		class="ndsapp.web.UpdateInstructionFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="instruction" />
+		<property name="commandClass" value="ndsapp.domain.Instruction" />
+		<property name="formView" value="updateinstructionform" />
+		<property name="successView" value="showinstruction" />
+		<property name="validator">
+			<bean class="ndsapp.service.InstructionValidator" />
+		</property>
+		<property name="rd" ref="rd"></property>		
+	</bean>
+
+	<bean name="/getinstruction.htm"
+		class="ndsapp.web.DisplayInstructionController">
+		<property name="rd" ref="rd"></property>	
+	</bean>
+
+	<bean name="/deleterule.htm" class="ndsapp.web.DeleteRuleController">
+		<property name="rd" ref="rd"></property>	
+	</bean>
+
+	<bean name="/home.htm" class="ndsapp.web.HomeController">
+		<property name="dbconn" ref="databaseconnection"></property>
+	</bean>
+
+	<bean name="/getallrules.htm"
+		class="ndsapp.web.DisplayRulesController">
+		<property name="rd" ref="rd"></property>
+	</bean>
+
+	<bean name="/showcase.htm" class="ndsapp.web.DisplaySingleCaseController">
+		<property name="cd" ref="cd"></property>
+	</bean>
+
+	<bean name="/rulediagnosis.htm"
+		class="ndsapp.web.RuleBasedDiagnosisController">
+		<property name="es" ref="hes" />
+		<property name="rd" ref="rd"></property>
+	</bean>
+
+	<bean name="/admin.htm" class="ndsapp.web.AdminFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="adminformdata" />
+		<property name="commandClass"
+			value="ndsapp.domain.AdminFormData" />
+		<property name="formView" value="adminform" />
+		<property name="successView" value="adminview" />
+		<property name="validator">
+			<bean class="ndsapp.service.AdminFormDataValidator" />
+		</property>
+		<property name="rd" ref="rd"></property>
+		<property name="cd" ref="cd"></property>
+		<property name="rc" ref="retrieveSimilarCases"></property>
+	</bean>
+
+	<bean name="/addrule.htm" class="ndsapp.web.AddRuleFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="newrule" />
+		<property name="commandClass"
+			value="ndsapp.domain.Rule" />
+		<property name="formView" value="addruleform" />
+		<property name="successView" value="home" />
+		<property name="validator">
+			<bean class="ndsapp.service.RuleValidator" />
+		</property>
+		<property name="rd" ref="rd"></property>
+	</bean>
+
+	<bean name="/newcaseform.htm"
+		class="ndsapp.web.CaseFormController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="newcase" />
+		<property name="commandClass" value="ndsapp.domain.Case" />
+		<property name="validator">
+			<bean class="ndsapp.service.CaseValidator" />
+		</property>
+		<property name="formView" value="newcaseform" />
+		<property name="successView" value="displaysimilarcases" />
+		<property name="es" ref="hes" />
+		<property name="cd" ref="cd" />		
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView">
+		</property>
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+</beans>

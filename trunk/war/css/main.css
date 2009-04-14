@@ -1,0 +1,151 @@
+html{
+	height: 100%;
+	border: 0;
+	padding: 0;
+	margin: 0;
+} 
+
+
+div#bannerswf{
+ 	position:absolute;
+ 	top:0px;
+ 	right:0px;
+ 	height:90px;
+ 	width:500px;
+ 	align:center;
+ 	right: 50%;
+ 	margin-right: -500px;	
+ 	z-index:1;
+}
+
+
+div#header
+{ 
+ 	position:absolute;
+ 	top:0px;
+ 	right:0px;
+ 	height:110px;
+ 	width:1000px;
+ 	align:center;
+ 	left: 50%;
+ 	margin-left: -500px;
+ 	z-index:2;
+}
+
+div#menuarea{
+	position:relative;
+	top:110px;
+	width:1000px;
+	height:26px;
+	left: 50%;
+ 	margin-left: -500px;
+	z-index:2;
+	}
+
+#menuarea_background{
+	position:absolute;
+	width:100%;
+	z-index:3;
+	}
+	
+#menuarea_links{
+	position:absolute;
+	top:-16px;
+	height:5;
+	width:100%;
+	z-index:4;
+	}
+	
+#navigation{
+	position:relative;
+	top:-10px;
+	left:0px;
+	right:0px;
+	bottom:20px;
+	width:90%;
+	z-index:8;
+	font-family:verdana;
+	font-size:11px;
+	color:#778877;
+}
+
+div#body{
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:20px;
+	padding-right:20px;
+	position:relative;
+	top:110px;
+	width:970px;	
+	z-index:7;
+	font-family:verdana;
+	font-size:13px;
+	color:#AA3300;
+	left: 50%;
+ 	margin-left: -500px;
+	background-image: url("/ndsapp/images/bodybkgrnd.png");
+	background-repeat:repeat-y;
+}	
+body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background-image: url("/ndsapp/images/neuron.jpg");
+}
+
+div#footer{
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:0px;
+	padding-right:0px;
+	position:relative;
+	top:110px;
+	width:1000px;
+	background-color:#ccddcc;
+	z-index:9;
+	left: 50%;
+ 	margin-left: -500px;
+	
+}
+table.footer {
+	position: relative;
+	font-family: verdana;
+	font-size: 10px;
+	color: #774477;
+	width:100%;
+}
+
+#table {
+	position: relative;
+	align: center;
+	font-family: verdana;
+	font-size: 12px;
+	color: #663366;
+}
+
+p.message{
+	font-family: verdana;
+	font-size: 12px;
+	color: #ff0000;
+}
+
+a:link{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:underline; }
+a:active{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:underline;}
+a:visited{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:underline;}
+a:hover{	font-family:verdana;font-size:13px;color: #775572; text-decoration:none;}
+
+A.menulinks:link{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:none; }
+A.menulinks:active{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:none;}
+A.menulinks:visited{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:none;}
+A.menulinks:hover{	font-family:verdana;font-size:17px;color: #777777; text-decoration:none;}
+
+A.showinstruction:link{	font-family:verdana;font-size:13x;color:#CC3300; text-decoration:underline; }
+A.showinstruction:active{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:underline;}
+A.showinstruction:visited{	font-family:verdana;font-size:13px;color:#CC3300; text-decoration:underline;}
+A.showinstruction:hover{	font-family:verdana;font-size:13px;color: #775522; text-decoration:underline;}
+
+A.adminlist:link{	font-family:verdana;font-size:13x;color:#CC3790; text-decoration:underline; }
+A.adminlist:active{	font-family:verdana;font-size:13px;color:#CC3d00; text-decoration:underline;}
+A.adminlist:visited{	font-family:verdana;font-size:13px;color:#CC3890; text-decoration:underline;}
+A.adminlist:hover{	font-family:verdana;font-size:13px;color: #775522; text-decoration:underline;}
